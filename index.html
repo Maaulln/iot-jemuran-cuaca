@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jemuran Pintar</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .line {
+      fill: none;
+      stroke-width: 2.5;
+      stroke-linejoin: round;
+      stroke-linecap: round;
+    }
+    .line.suhu { stroke: #f97316; }
+    .line.kelembapan { stroke: #2563eb; }
+    .chart-container { overflow-x: auto; max-width: 100%; }
+    .card { min-height: 200px; }
+  </style>
+</head>
+<body class="bg-gray-50 min-h-screen flex flex-col items-center p-4">
+  <div class="max-w-6xl w-full bg-white rounded-2xl shadow-lg p-6">
+    <!-- Header -->
+    <header class="flex flex-col sm:flex-row justify-between items-center mb-6 gap-4">
+      <h1 class="text-2xl font-extrabold text-purple-700 select-none">Jemuran Pintar</h1>
+      <nav class="flex gap-6 text-gray-600 sm:text-base text-sm font-medium select-none">
+        <a href="/dashboard" class="hover:text-purple-600 transition">Dashboard</a>
+        <a href="/notifikasi" class="hover:text-purple-600 transition">Notifikasi</a>
+        <a href="/riwayat" class="hover:text-purple-600 transition">Riwayat</a>
+        <a href="/pengaturan" class="hover:text-purple-600 transition">Pengaturan</a>
+      </nav>
+    </header>
+
+    <!-- Dashboard Content -->
+    <div class="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-6">
+      <!-- Status Jemuran -->
+      <section class="bg-purple-50 rounded-xl p-4 shadow-sm card">
+        <h2 class="font-semibold text-lg text-gray-700 mb-2">Status Jemuran</h2>
+        <p class="text-green-600 font-bold text-lg mb-1">Sedang Dikeringkan</p>
+        <ul class="text-gray-700 space-y-1 text-sm">
+          <li><span class="font-semibold">Suhu:</span> 30°C</li>
+          <li><span class="font-semibold">Kelembapan:</span> 55%</li>
+          <li><span class="font-semibold">Waktu Sisa:</span> 1 jam 30 menit</li>
+        </ul>
+      </section>
+
+      <!-- Cuaca Saat Ini -->
+      <section class="bg-purple-50 rounded-xl p-4 shadow-sm card flex flex-col justify-center items-center text-center">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-12 h-12 mb-2 text-yellow-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="2" fill="#FBBF24"/>
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 1v2m0 18v2m11-11h-2M3 12H1m16.07-6.93l-1.41 1.41M6.34 17.66l-1.41 1.41m12.02 0l1.41 1.41M6.34 6.34l1.41 1.41"/>
+        </svg>
+        <h2 class="font-semibold text-lg text-gray-700 mb-1">Cuaca Saat Ini</h2>
+        <p class="text-gray-900 font-bold text-xl">Cerah</p>
+        <p class="text-gray-700 mb-1">20°C</p>
+        <p class="text-gray-600 text-sm">Kelembapan 60%</p>
+      </section>
+
+      <!-- Cuaca -->
+      <section class="bg-purple-50 rounded-xl p-4 shadow-sm card">
+        <h2 class="font-semibold text-lg text-gray-700 mb-2">Cuaca</h2>
+        <ul class="text-gray-700 space-y-1 text-sm">
+          <li><span class="font-semibold">Hujan atau turun:</span> no</li>
+          <li><span class="font-semibold">Suhu:</span> 28°C</li>
+          <li><span class="font-semibold">Prediksi hujan:</span> 0%</li>
+        </ul>
+      </section>
+
+      <!-- Grafik Kelembapan & Suhu -->
+      <section class="bg-white rounded-xl p-4 shadow-md col-span-1 md:col-span-2 lg:col-span-4">
+        <h2 class="font-semibold text-lg text-gray-700 mb-3">Grafik Kelembapan & Suhu</h2>
+        <div class="chart-container">
+          <svg width="800" height="200" viewBox="0 0 800 200" xmlns="http://www.w3.org/2000/svg" aria-label="Grafik garis yang menampilkan suhu dan kelembapan">
+            <line x1="50" y1="10" x2="50" y2="180" stroke="#cbd5e1" stroke-width="1"/>
+            <line x1="50" y1="180" x2="750" y2="180" stroke="#cbd5e1" stroke-width="1"/>
+            <text x="15" y="185" font-size="12" fill="#6b7280" dominant-baseline="middle">0</text>
+            <text x="15" y="140" font-size="12" fill="#6b7280" dominant-baseline="middle">20</text>
+            <text x="15" y="90" font-size="12" fill="#6b7280" dominant-baseline="middle">40</text>
+            <text x="15" y="40" font-size="12" fill="#6b7280" dominant-baseline="middle">60</text>
+            <text x="15" y="10" font-size="12" fill="#6b7280" dominant-baseline="middle">80</text>
+            <text x="90" y="195" font-size="12" fill="#6b7280" text-anchor="middle">08:00</text>
+            <text x="220" y="195" font-size="12" fill="#6b7280" text-anchor="middle">09:00</text>
+            <text x="350" y="195" font-size="12" fill="#6b7280" text-anchor="middle">10:00</text>
+            <text x="480" y="195" font-size="12" fill="#6b7280" text-anchor="middle">11:00</text>
+            <text x="610" y="195" font-size="12" fill="#6b7280" text-anchor="middle">12:00</text>
+            <path class="line suhu" d="M50 127 L180 90 L310 60 L440 50 L570 45"/>
+            <path class="line kelembapan" d="M50 140 L180 130 L310 120 L440 115 L570 110"/>
+            <rect x="620" y="15" width="15" height="4" fill="#f97316"/>
+            <text x="640" y="20" font-size="12" fill="#6b7280" alignment-baseline="middle">Suhu</text>
+            <rect x="700" y="15" width="15" height="4" fill="#2563eb"/>
+            <text x="720" y="20" font-size="12" fill="#6b7280" alignment-baseline="middle">Kelembapan</text>
+          </svg>
+        </div>
+      </section>
+
+      <!-- Riwayat Aktivitas -->
+      <section class="bg-white rounded-xl p-4 shadow-md col-span-1 md:col-span-2 lg:col-span-4">
+        <h2 class="font-semibold text-lg text-gray-700 mb-3">Riwayat Aktifitas Terbaru</h2>
+        <table class="w-full text-sm text-left text-gray-700">
+          <thead class="text-gray-500 border-b border-gray-300">
+            <tr>
+              <th class="py-2 px-3">Waktu</th>
+              <th class="py-2 px-3">Status</th>
+              <th class="py-2 px-3">Suhu</th>
+              <th class="py-2 px-3">Kelembapan</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="border-b border-gray-200">
+              <td class="py-2 px-3">08:00</td>
+              <td class="py-2 px-3 text-green-600 font-semibold">Sedang Dikeringkan</td>
+              <td class="py-2 px-3">28°C</td>
+              <td class="py-2 px-3">60%</td>
+            </tr>
+            <tr class="border-b border-gray-200">
+              <td class="py-2 px-3">09:00</td>
+              <td class="py-2 px-3 text-green-600 font-semibold">Sedang Dikeringkan</td>
+              <td class="py-2 px-3">30°C</td>
+              <td class="py-2 px-3">55%</td>
+            </tr>
+            <tr class="border-b border-gray-200">
+              <td class="py-2 px-3">10:00</td>
+              <td class="py-2 px-3 text-gray-600">Menunggu</td>
+              <td class="py-2 px-3">-</td>
+              <td class="py-2 px-3">-</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+    </div>
+  </div>
+</body>
+</html>
